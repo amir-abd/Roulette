@@ -1,0 +1,29 @@
+*{
+    box-sizing:border-box;
+  }
+
+.gamewrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: ;
+    height: 600px;
+    width: 800px;
+    background-color: blueviolet;
+    margin-left: 300px;
+    margin-top: 60px;
+}
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+.red {
+    background-color: red;
+    color: white;
+}
+
+.black {
+    background-color: black;
+    color: white;
+}
