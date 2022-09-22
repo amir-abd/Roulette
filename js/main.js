@@ -1,52 +1,88 @@
-let total = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36] 
+ 
 
-let old_id = 100
+
 
 /*----- app's state (variables) -----*/
-let winner, board
+let selected_ids, winNum, wallet,bet, win
 
 /*----- cached element references -----*/
 const resetBtnEl = document.getElementById('reset')
 const exitBtnEl = document.getElementById('exit')
 const spinBtnEl = document.getElementById('spin')
 const messageDisplayEl = document.querySelector('h2')
+const walletDisplayEl = document.querySelector('h3')
+const betDisplayEl = document.querySelector('h4')
+
+
 
 
 /*----- event listeners -----*/
-// resetBtnEl.addEventListener('click', handleResetClick)
+resetBtnEl.addEventListener('click', init)
+exitBtnEl.addEventListener('click', exitcash)
+
 spinBtnEl.addEventListener('click', handleSpinClick)
 // boardEl.addEventListener('click', handleBoardClick)
 // bet.add
 
-function myFunction(event) { 
-    alert(event.target.id);
-  }
+
+function exitcash(){
+    alert("Have a good day and Thank you for Playing, your balance is: " + wallet);
+    
+}
 
 for (let id=0; id<=36;id++) {
         document.getElementById(id).addEventListener("click", buttonPressed)
     }
+    document.getElementById('red').addEventListener("click", buttonPressed)
+    document.getElementById('black').addEventListener("click", buttonPressed)
+
 
 
 function buttonPressed(evt) {
+    if (selected_ids.includes(evt.target.id)){
+    document.getElementById(evt.target.id).style.backgroundColor = "";
+    selected_ids.splice(selected_ids.indexOf(evt.target.id) ,1)
+    }else{
+    selected_ids.push(evt.target.id)
     document.getElementById(evt.target.id).style.backgroundColor = "blue";
-    if (old_id !== 100){
-        document.getElementById(old_id).style.backgroundColor = "";
     }
-    old_id=evt.target.id;
+
+    bet = selected_ids.length;
+    render();
 }
 
-// function init() {
-//     board = [null, null, null, null, null, null, null, null, null]
-//     bank = 50
-// }
+ function init() {
+     wallet = 50
+     bet = 0
+     selected_ids= [];
+     winNum = ""
+     win = false;
+     messageDisplayEl.style.backgroundColor = "";
+     render();
+ }
 
+ init();
 
-// function checkWin() {
-//     if (bet.id === winNum) {
-//         messageDisplayEl.innerText = 'Win'
-//     }else{
-//         messageDisplayEl.innerText = 'No Win'
-//     }
+function checkWin() {
+    win = false;
+    if (selected_ids.includes(winNum.toString())) {
+        wallet = wallet + 36
+        win = true;
+    }
+
+    if ((selected_ids.includes('black')) && (document.getElementById(winNum.toString()).className === 'black')){
+        wallet = wallet + 2
+        win = true;
+    }
+
+    if ((selected_ids.includes('red')) && (document.getElementById(winNum.toString()).className === 'red')){
+        wallet = wallet + 2
+        win = true;
+    }
+
+    wallet = wallet - bet; 
+}
+
 
 
 // function handleResetClick() {
@@ -54,9 +90,38 @@ function buttonPressed(evt) {
 //     }
 
 function handleSpinClick() {
-    let winNum = Math.floor(Math.random() * 36) 
-    return }
+    
+    winNum = Math.floor(Math.random() * 36) 
+    if (selected_ids.length<1){
+        messageDisplayEl.innerText = "place your bets first"
+    }else{
+            checkWin();       
+        }
+    selected_ids.forEach(emptySelection)
+    selected_ids = []
+    bet =""
+    render()
+}
 
-function bet() {
-    let bet = 0
+function emptySelection(id){
+    document.getElementById(id).style.backgroundColor = "";
+}
+
+function render() {
+
+    walletDisplayEl.innerText = "Your Bank " + wallet
+    betDisplayEl.innerText = "Your Bet " + bet
+
+    if (winNum !== "") {
+    if (win){
+        messageDisplayEl.innerText = "You have won and winner is #" + winNum
+        messageDisplayEl.style.backgroundColor = "green";
+    }else{
+        messageDisplayEl.innerText = "You have not won! winner is #" + winNum
+        messageDisplayEl.style.backgroundColor = "red";
+    }
+}else{
+    messageDisplayEl.innerText = "Place your bet & Spin"
+}
+    
 }
