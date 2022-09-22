@@ -3,7 +3,7 @@
 
 
 /*----- app's state (variables) -----*/
-let selected_ids, winNum, wallet,bet, win
+let selected_ids, winNum, wallet ,bet , win
 
 /*----- cached element references -----*/
 const resetBtnEl = document.getElementById('reset')
@@ -19,18 +19,17 @@ const betDisplayEl = document.querySelector('h4')
 /*----- event listeners -----*/
 resetBtnEl.addEventListener('click', init)
 exitBtnEl.addEventListener('click', exitcash)
-
 spinBtnEl.addEventListener('click', handleSpinClick)
-// boardEl.addEventListener('click', handleBoardClick)
-// bet.add
+
 
 
 function exitcash(){
     alert("Have a good day and Thank you for Playing, your balance is: " + wallet);
-    
-}
 
-for (let id=0; id<=36;id++) {
+}
+    document.getElementById("green").addEventListener("click", buttonPressed)
+
+for (let id=1; id<=36;id++) {
         document.getElementById(id).addEventListener("click", buttonPressed)
     }
     document.getElementById('red').addEventListener("click", buttonPressed)
@@ -41,7 +40,7 @@ for (let id=0; id<=36;id++) {
 function buttonPressed(evt) {
     if (selected_ids.includes(evt.target.id)){
     document.getElementById(evt.target.id).style.backgroundColor = "";
-    selected_ids.splice(selected_ids.indexOf(evt.target.id) ,1)
+    selected_ids.splice(selected_ids.indexOf(evt.target.id) ,1);
     }else{
     selected_ids.push(evt.target.id)
     document.getElementById(evt.target.id).style.backgroundColor = "blue";
@@ -83,17 +82,12 @@ function checkWin() {
     wallet = wallet - bet; 
 }
 
-
-
-// function handleResetClick() {
-//     init()
-//     }
-
 function handleSpinClick() {
     
     winNum = Math.floor(Math.random() * 36) 
-    if (selected_ids.length<1){
+    if (selected_ids.length === 0){
         messageDisplayEl.innerText = "place your bets first"
+        return;
     }else{
             checkWin();       
         }
@@ -109,8 +103,8 @@ function emptySelection(id){
 
 function render() {
 
-    walletDisplayEl.innerText = "Your Bank " + wallet
-    betDisplayEl.innerText = "Your Bet " + bet
+    walletDisplayEl.innerText = "Your Bank: " + wallet
+    betDisplayEl.innerText = "Your Bet: " + bet
 
     if (winNum !== "") {
     if (win){
@@ -121,7 +115,7 @@ function render() {
         messageDisplayEl.style.backgroundColor = "red";
     }
 }else{
-    messageDisplayEl.innerText = "Place your bet & Spin"
+    messageDisplayEl.innerText = " Place your bet by clicking numbers & Spin "
 }
     
 }
