@@ -21,8 +21,7 @@ resetBtnEl.addEventListener('click', init)
 exitBtnEl.addEventListener('click', exitcash)
 
 spinBtnEl.addEventListener('click', handleSpinClick)
-// boardEl.addEventListener('click', handleBoardClick)
-// bet.add
+
 
 
 function exitcash(){
