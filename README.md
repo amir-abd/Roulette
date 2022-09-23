@@ -11,5 +11,12 @@ losing:
 cashout:
 <img src="https://i.imgur.com/9v3mTNO.png">
 <br>
+## Technologies Used: 
+JavaScript, HTML, CSS
 
+## Getting Started:
+
+## Next Steps:
+being able to bid different amounts on different numbers.
+adding delay to the spinHandler function.
 
