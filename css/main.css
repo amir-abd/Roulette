@@ -19,14 +19,17 @@ body{
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 20px;
-    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
-    /* grid-template-rows: ;  */
     height: 80%; 
     width: 80%;
-    /* margin-left: px;
-    margin-top: 60px; */
+    
 }
-
+.gamewrapper div {
+text-align = center;
+border: 2px solid burlywood;
+display: flex;
+justify-content: center;
+font-size: 25px;
+}
 h1{
 width: 100%;
 height: 20%;
@@ -85,4 +88,8 @@ h3, h4 {
 #reset, #exit {
    background:linear-gradient(to right,  #0f182b 0%,#2a3b53 33%,#2a3b53 66%,#0f182b 100%);
    color: white;
+}
+
+#red, #black {
+color:#84b5c0
 }

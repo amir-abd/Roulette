@@ -21,20 +21,12 @@ resetBtnEl.addEventListener('click', init)
 exitBtnEl.addEventListener('click', exitcash)
 spinBtnEl.addEventListener('click', handleSpinClick)
 
-
-
-function exitcash(){
-    alert("Have a good day and Thank you for Playing, your balance is: " + wallet);
-
-}
-    document.getElementById("green").addEventListener("click", buttonPressed)
-
 for (let id=1; id<=36;id++) {
         document.getElementById(id).addEventListener("click", buttonPressed)
     }
     document.getElementById('red').addEventListener("click", buttonPressed)
     document.getElementById('black').addEventListener("click", buttonPressed)
-
+    document.getElementById("green").addEventListener("click", buttonPressed)
 
 
 function buttonPressed(evt) {
@@ -84,21 +76,19 @@ function checkWin() {
 
 function handleSpinClick() {
     
-    winNum = Math.floor(Math.random() * 36) 
+    winNum = Math.floor(Math.random() * 37) 
     if (selected_ids.length === 0){
         messageDisplayEl.innerText = "place your bets first"
         return;
     }else{
             checkWin();       
         }
-    selected_ids.forEach(emptySelection)
+    selected_ids.forEach(function emptySelection(id) {
+    document.getElementById(id).style.backgroundColor = "";
+    });
     selected_ids = []
     bet =""
     render()
-}
-
-function emptySelection(id){
-    document.getElementById(id).style.backgroundColor = "";
 }
 
 function render() {
@@ -109,13 +99,17 @@ function render() {
     if (winNum !== "") {
     if (win){
         messageDisplayEl.innerText = "You have won and winner is #" + winNum
-        messageDisplayEl.style.backgroundColor = "green";
+        messageDisplayEl.style.backgroundColor = "lightblue";
     }else{
         messageDisplayEl.innerText = "You have not won! winner is #" + winNum
-        messageDisplayEl.style.backgroundColor = "red";
+        messageDisplayEl.style.backgroundColor = "orange";
     }
 }else{
     messageDisplayEl.innerText = " Place your bet by clicking numbers & Spin "
 }
-    
+}
+
+function exitcash(){
+    alert("Have a good day and Thank you for Playing, your balance is: " + wallet);
+
 }
