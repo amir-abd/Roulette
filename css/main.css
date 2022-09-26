@@ -24,7 +24,7 @@ body{
     
 }
 .gamewrapper div {
-text-align = center;
+text-align: center;
 border: 2px solid burlywood;
 display: flex;
 justify-content: center;
